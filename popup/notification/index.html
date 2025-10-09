@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" as="style" href="/popup/pretendard.css">
+  <title>KNU+</title>
+</head>
+<body>
+  <div class="notification-container">
+    <!-- GET 해서 메시지 어차피 읽어야하는게 이거 안하면 읽음으로 표시가 안됨 ㅋㅋㅋ -->
+    <!-- convo.audience[0] === 1 && convo.subject.endsWith("스마트 출결이 시작되었습니다.") : 출석, https://canvas.knu.ac.kr/courses/{convo.context_code.split("_")[1]}/external_tools/54 -->
+    <div class="notification notification-green">
+      <svg class="notification-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
+      </svg>
+      <div class="notification-info">
+        <span class="notification-title">[논리와 비판적 사고 000분반] 12/25(월) 스마트 출결이 시작되었습니다.</span>
+        <span class="notification-description">논리와 비판적 사고 000분반 12/25(월) 스마트 출결이 시작되었습니다.
+
+  아래 링크를 통해 스마트 출결 진행 화면으로 이동할 수 있습니다.
+
+  - 스마트출결 바로가...</span>
+      </div>
+    </div>
+    <!-- convo.audience[0] === 96268 : 강의실에 아이템 등록, GET https://canvas.knu.ac.kr/api/v1/conversations/{convo.id} 한번 더 들어가서 while(1); 떼고 convo.messages[0].body.split("- 학습요소 바로가기 : \n    ")[1] -->
+    <!-- convo.audience[0] === 1 && convo.subject.includes("'강의자료실' 에 새로운 글이 등록되었습니다. - New post registered") : 강의자료실에 아이템 등록, https://canvas.knu.ac.kr/courses/{convo.context_code.split("_")[1]}/external_tools/28 -->
+    <div class="notification notification-red">
+      <svg class="notification-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z" clip-rule="evenodd" />
+        <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+      </svg>
+      <div class="notification-info">
+        <span class="notification-title">[대학글쓰기 000분반] '테스트'가 등록되었습니다.</span>
+        <span class="notification-description">대학글쓰기 000분반의 '테스트'이/가 등록되었습니다.
+
+  아래 바로가기 링크를 통해 확인할 수 있습니다.
+
+  - 학습요소 바로가기 : 
+      http://canvas...</span>
+      </div>
+    </div>
+    <!-- convo.audience[0] === 139185 : 과제 마감 전 스마트 알림 -->
+    <div class="notification notification-fire">
+      <svg class="notification-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z" clip-rule="evenodd" />
+      </svg>
+      <div class="notification-info">
+        <span class="notification-title">마감 3시간 전 알림 - [자료구조 000분반] 테스트</span>
+        <span class="notification-description">3시간 후 과제가 마감됩니다.
+아래 바로가기 링크를 통해 확인할 수 있습니다.
+
+- 과목명: 자료구조 000분반
+- 제목: 테스트
+- 시작일: 2025-12-25...</span>
+      </div>
+    </div>
+    <!-- 나머지의 경우 (일반 LMS메시지), https://canvas.knu.ac.kr/conversations#filter=type=unread -->
+    <div class="notification notification-orange">
+      <svg class="notification-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z" clip-rule="evenodd" />
+      </svg>
+      <div class="notification-info">
+        <span class="notification-title">[테스트] 여기는 제목이 들어갈 자리입니다</span>
+        <span class="notification-description">여기는 내용이 들어갈 자리입니다.
+엄청나게 긴 내용이 들어가야 줄바꿈이 일어납니다.
+다람쥐 헌 쳇바퀴 어쩌구저쩌구...</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

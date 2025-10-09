@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" as="style" href="/popup/pretendard.css">
+  <link rel="preload" href="/fonts/Pretendard-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/Pretendard-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/Pretendard-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <title>KNU+</title>
+</head>
+<body>
+  <div class="topbar">
+    <svg id="navigate-back" class="navigate-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+    </svg>
+    <span class="title">LMS</span>
+    <svg id="navigate-open" class="navigate-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+    </svg>
+  </div>
+  <div class="container">
+    <div class="box">
+      <div class="toggle-item" data-name="notification">
+        <div class="item-info">
+          <span class="item-title">메시지 도착시 팝업으로 알림</span>
+          <span class="item-description">LMS 메시지 도착시 화면 우측 상단에 알림을 표시합니다</span>
+        </div>
+        <div class="item-togglebox">
+          <div class="item-toggle"></div>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="toggle-item" data-name="knu10ForceEnable">
+        <div class="item-info">
+          <span class="item-title">[KNU10] 강의보기 활성화</span>
+          <span class="item-description">거점국립대학교 학점교류시스템에서 강의가 학습기간이<br/>아니더라도 수강을 가능하게 합니다</span>
+        </div>
+        <div class="item-togglebox">
+          <div class="item-toggle"></div>
+        </div>
+      </div>
+      <div class="divider-item"></div>
+      <div class="toggle-item" data-name="knu10AutoLogin">
+        <div class="item-info">
+          <span class="item-title">[KNU10] 자동 로그인</span>
+          <span class="item-description">기타 탭에 등록된 정보로 거점국립대학교<br/>학점교류시스템에서 자동으로 로그인합니다</span>
+        </div>
+        <div class="item-togglebox">
+          <div class="item-toggle"></div>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="downloader-item">
+        <div class="item-info">
+          <span class="item-title">강의 콘텐츠 다운로드</span>
+          <span class="item-description">온라인 강의 동영상을 다운로드합니다</span>
+        </div>
+        <div class="item-refreshbox">
+          <svg class="item-refresh" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+          </svg>
+        </div>
+      </div>
+      <div class="divider-item"></div>
+      <div class="button-item">
+        <div class="item-info">
+          <span id="knuplus_downloadtitle" class="item-title">새로고침 버튼을 눌러 콘텐츠를 불러와주세요</span>
+          <span id="knuplus_downloaddescription" class="item-description" style="display: none;"></span>
+        </div>
+        <div id="knuplus_downloadbutton" class="item-buttonbox" style="display: none;">
+          <span class="item-button">다운로드</span>
+        </div>
+      </div>
+    </div>
+    <div id="knuplus_downloadbox" class="box">
+      <div class="downloadlist-item">
+        <div class="item-info">
+          <span class="item-title">다운로드 목록</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/scripts/utils/mux.min.js"></script>
+  <script src="/scripts/utils/ffmpeg.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

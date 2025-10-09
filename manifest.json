@@ -1,0 +1,138 @@
+{
+    "manifest_version": 3,
+    "name": "KNU+",
+    "description": "Bring extra convenience to KNUris' lives",
+    "version": "1.0.0",
+    "icons": {
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+    },
+    "action": {
+        "default_title": "KNU+",
+        "default_popup": "popup/popup.html"
+    },
+    "host_permissions": [
+        "*://*/*"
+    ],
+    "permissions": [
+        "storage",
+        "downloads",
+        "declarativeNetRequest",
+        "declarativeNetRequestWithHostAccess"
+    ],
+    "background": {
+        "service_worker": "service_worker.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://knuin.knu.ac.kr/webview/main/Main.knu*"],
+            "js": ["scripts/utils/settings.js", "scripts/information/injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://knuin.knu.ac.kr/webview/main/Main.knu*", "https://knuin.knu.ac.kr/public/stddm/lectPlnInqr.knu*"],
+            "js": ["scripts/utils/settings.js", "scripts/schedule/injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://knuin.knu.ac.kr/websquare/popup.html?w2xPath=/views/cmmnn/popup/windowpopup.xml&popupID=publicLectPlnInputDtlPop&w2xHome=/stddm/lsspr/public/&w2xDocumentRoot=", "https://knuin.knu.ac.kr/websquare/popup.html?w2xPath=/views/cmmnn/popup/windowpopup.xml&popupID=tabContentMain_contents_tabPgmMNU0010656_body_lectPlnInputDtlPop&w2xHome=/main/&w2xDocumentRoot="],
+            "js": ["scripts/utils/settings.js", "scripts/scheduleInfo/injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://lssrq.knu.ac.kr/grads/login.knu*", "https://lssrq.knu.ac.kr/web/stddm/lssrq/sugang/termGradsInqr.knu*"],
+            "js": ["scripts/utils/settings.js", "scripts/score/injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://sugang.knu.ac.kr/login.knu*", "https://sugang.knu.ac.kr/web/stddm/lssrq/sugang/appcr.knu*"],
+            "js": ["scripts/utils/settings.js", "scripts/utils/jimp.js", "scripts/utils/captcha.js", "scripts/sugang/injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://sugang.knu.ac.kr/web/stddm/lssrq/sugang/packReq.knu*"],
+            "js": ["scripts/utils/settings.js", "scripts/utils/jimp.js", "scripts/utils/captcha.js", "scripts/sugangPack/injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://canvas.knu.ac.kr/*"],
+            "js": ["scripts/utils/settings.js", "scripts/lms/injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://lcms.knu.ac.kr/em/*"],
+            "js": ["scripts/lms/iframe_injector.js"],
+            "run_at": "document_end",
+            "all_frames": true
+        },
+        {
+            "matches": ["https://www.knu10.or.kr/ctl/mainHome*", "https://lms.knu10.or.kr/crs/creCrsLect/Form/classRoomMainForm*", "https://lms.knu10.or.kr/lesson/lessonLect/Form/creLessonCntsView*", "https://lms.knu10.or.kr/lesson/lessonLect/Form/mainLesson*"],
+            "js": ["scripts/utils/settings.js", "scripts/lms/knu10_injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://dormt.knu.ac.kr/webview/main/Main.knu*"],
+            "js": ["scripts/utils/settings.js", "scripts/dormitory/injector.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://lssrq.knu.ac.kr/web/stddm/lssrq/sugang/termGradsInqr.knu*"],
+            "js": ["scripts/utils/settings.js", "scripts/debugger/injector.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["https://appfn.knu.ac.kr/login.knu*"],
+            "js": ["scripts/utils/settings.js", "scripts/login/injector.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "matches": ["<all_urls>"],
+            "resources": ["fonts/*.woff2"]
+        },
+        {
+            "matches": ["https://knuin.knu.ac.kr/*"],
+            "resources": ["scripts/information/index.js", "scripts/schedule/index.js", "scripts/scheduleInfo/public.js", "scripts/scheduleInfo/private.js"]
+        },
+        {
+            "matches": ["https://lssrq.knu.ac.kr/*"],
+            "resources": ["scripts/score/index.js"]
+        },
+        {
+            "matches": ["https://sugang.knu.ac.kr/*"],
+            "resources": ["scripts/sugang/index.js"]
+        },
+        {
+            "matches": ["https://canvas.knu.ac.kr/*"],
+            "resources": ["popup/pretendard.css", "scripts/lms/index.css"]
+        },
+        {
+            "matches": ["https://lcms.knu.ac.kr/*"],
+            "resources": ["scripts/lms/iframe.js"]
+        },
+        {
+            "matches": ["https://www.knu10.or.kr/*"],
+            "resources": ["scripts/lms/knu10.js", "scripts/lms/tab.html", "scripts/lms/tab.css", "scripts/lms/tab.js"]
+        },
+        {
+            "matches": ["https://lms.knu10.or.kr/*"],
+            "resources": ["scripts/lms/knu10.js"]
+        },
+        {
+            "matches": ["https://dormt.knu.ac.kr/*"],
+            "resources": ["scripts/dormitory/index.js"]
+        },
+        {
+            "matches": ["https://lssrq.knu.ac.kr/*"],
+            "resources": ["scripts/debugger/index.js"]
+        },
+        {
+            "matches": ["https://appfn.knu.ac.kr/*"],
+            "resources": ["scripts/login/index.js", "scripts/login/tab.html", "scripts/login/tab.css", "scripts/login/tab.js"]
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+    }
+}

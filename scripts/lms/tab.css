@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  height: 50px;
+}
+
+#knuplus_login {
+  cursor: pointer;
+  background-color: #743042;
+  color: white;
+  height: 36px;
+  line-height: 36px;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  transition: all .2s ease;
+}
+
+#knuplus_login:hover,
+#knuplus_login:focus {
+  background-color: #380000;
+}

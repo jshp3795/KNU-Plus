@@ -1,0 +1,8 @@
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-old(topbar),
+::view-transition-new(topbar),
+::view-transition-old(container),
+::view-transition-new(container) {
+  animation-duration: 0ms;
+}
