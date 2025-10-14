@@ -1,11 +1,11 @@
 let credentialInfo = null;
 document.getElementById("knuplus_login").addEventListener("click", async (event) => {
     if (!credentialInfo) {
-        alert("KNU+ 확장 프로그램의 기타 탭에서 통합인증 시스템의 아이디와 비밀번호를 먼저 등록해주세요.");
+        alert("KNU+ 확장 프로그램의 계정 탭에서 통합인증 시스템의 아이디와 비밀번호를 먼저 등록해주세요.");
         return;
     }
     if (credentialInfo.type !== "passkey") {
-        alert("KNU+ 확장 프로그램의 기타 탭에서 패스키를 먼저 등록해주세요.");
+        alert("KNU+ 확장 프로그램의 계정 탭에서 패스키를 먼저 등록해주세요.");
         return;
     }
 
