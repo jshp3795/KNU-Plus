@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" as="style" href="/popup/pretendard.css">
+  <link rel="preload" href="/fonts/Pretendard-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/Pretendard-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/Pretendard-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <title>KNU+</title>
+</head>
+<body>
+  <div class="topbar">
+    <svg id="navigate-back" class="navigate-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+    </svg>
+    <span class="title">계정</span>
+    <div class="topbar-padding"></div>
+  </div>
+  <div class="container">
+    <div class="box">
+      <div class="input-item">
+        <div class="item-info">
+          <span class="item-title">통합인증 시스템 계정 등록</span>
+          <span class="item-description">통합인증 시스템에 로그인하기 위해 계정을 등록해 주세요<br/>'패스키로 로그인' 설정을 변경하실 때마다 재등록이 필요합니다</span>
+        </div>
+        <div class="item-inputbox">
+          <div id="knuplus_registeraccount" class="item-button" data-step="1" style="display: none;">
+            계정 등록
+          </div>
+          <div class="item-input" data-step="2" style="display: none;">
+            <input id="knuplus_input_id" placeholder="통합인증 시스템 ID">
+            <div id="knuplus_inputbutton_id">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </div>
+          </div>
+          <div class="item-input" data-step="3" style="display: none;">
+            <input id="knuplus_input_password" type="password" placeholder="통합인증 시스템 비밀번호">
+            <div id="knuplus_inputbutton_password">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </div>
+          </div>
+          <div id="knuplus_registerpasskey" class="item-button" data-step="4" style="display: none;">
+            패스키 등록
+          </div>
+          <div id="knuplus_deleteaccount" class="item-button" data-step="5" style="display: none;">
+            계정 삭제: %ID%
+          </div>
+        </div>
+      </div>
+      <div class="divider-item"></div>
+      <div class="toggle-item" data-name="passkeyLogin">
+        <div class="item-info">
+          <span class="item-title">패스키로 로그인</span>
+          <span class="item-description">패스키 인증(지문, 얼굴 등)을 통해 로그인합니다</span>
+        </div>
+        <div class="item-togglebox">
+          <div class="item-toggle"></div>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="toggle-item" data-name="autoLogin">
+        <div class="item-info">
+          <span class="item-title">통합인증 시스템 자동 로그인</span>
+          <span class="item-description">등록된 정보로 통합인증 시스템에서 자동으로 로그인합니다</span>
+        </div>
+        <div class="item-togglebox">
+          <div class="item-toggle"></div>
+        </div>
+      </div>
+      <div class="divider-item"></div>
+      <div class="toggle-item" data-name="knu10AutoLogin">
+        <div class="item-info">
+          <span class="item-title">KNU10 자동 로그인</span>
+          <span class="item-description">등록된 정보로 거점국립대학교 학점교류시스템에서<br/>자동으로 로그인합니다</span>
+        </div>
+        <div class="item-togglebox">
+          <div class="item-toggle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>

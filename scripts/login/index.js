@@ -7,7 +7,7 @@ if (!window.__KNUPLUS_SETTINGS__) {
 }
 
 if (window.__KNUPLUS_SETTINGS__) {
-    if (window.__KNUPLUS_SETTINGS__.miscellaneous.passkeyLogin) {
+    if (window.__KNUPLUS_SETTINGS__.account.passkeyLogin) {
         window.addEventListener("message", (event) => {
             if (event.origin.startsWith("chrome-extension://")) {
                 const { id, password, type } = JSON.parse(event.data);

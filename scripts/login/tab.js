@@ -25,8 +25,8 @@ chrome.storage.local.get("credentials").then(({ credentials }) => {
 
     credentialInfo = credentials;
     if (credentials.type === "passkey") {
-        chrome.storage.sync.get("miscellaneous", ({ miscellaneous }) => {
-            if (miscellaneous && miscellaneous.autoLogin) {
+        chrome.storage.sync.get("account", ({ account }) => {
+            if (account && account.autoLogin) {
                 // 자동 로그인, 패스키 로그인이 켜져있고 패스키 등록이 되어있는 경우
                 document.getElementById("knuplus_login").click();
             }

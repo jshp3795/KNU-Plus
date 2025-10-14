@@ -11,8 +11,7 @@ document.getElementById("navigate-open").addEventListener("click", (event) => {
 // SETTINGS_DEFAULTS
 const defaults = {
     notification: true,
-    knu10ForceEnable: true,
-    knu10AutoLogin: false
+    knu10ForceEnable: true
 };
 
 class Settings {

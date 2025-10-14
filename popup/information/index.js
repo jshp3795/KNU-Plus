@@ -4,10 +4,14 @@ document.getElementById("navigate-back").addEventListener("click", (event) => {
     location.href = "/popup/index.html";
 });
 
+document.getElementById("navigate-open").addEventListener("click", (event) => {
+    window.open("https://knuin.knu.ac.kr/");
+});
+
 // SETTINGS_DEFAULTS
 const defaults = {
-    antiDebugger: true,
-    allowFunctionKeys: true
+    disableAutoLogout: true,
+    disable2fa: true
 };
 
 class Settings {

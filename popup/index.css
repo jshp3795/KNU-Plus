@@ -25,7 +25,7 @@ body {
   color: #FFFFFF;
 
   width: 360px;
-  height: 360px;
+  height: 480px;
   margin: 8px;
 
   display: flex;
@@ -85,6 +85,14 @@ body {
   );
 }
 
+.navigate-orange {
+  background: linear-gradient(
+    150deg,
+    #28282FA0 20%,
+    oklch(80% 0.17 50 / 0.2) 100%
+  );
+}
+
 .navigate-yellow {
   background: linear-gradient(
     150deg,
@@ -122,6 +130,14 @@ body {
     150deg,
     #28282FA0 20%,
     oklch(80% 0.17 320 / 0.2) 100%
+  );
+}
+
+.navigate-white {
+  background: linear-gradient(
+    150deg,
+    #28282FA0 20%,
+    oklch(80% 0 50 / 0.2) 100%
   );
 }
 

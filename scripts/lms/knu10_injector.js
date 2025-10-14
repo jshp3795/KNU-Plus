@@ -7,7 +7,7 @@ getSettings().then((settings) => {
     if (location.pathname === "/ctl/mainHome") {
         if (document.getElementById("ssStudentId")) return; // 이미 로그인되어 있음
 
-        if (settings.miscellaneous.passkeyLogin) { // 패스키
+        if (settings.account.passkeyLogin) { // 패스키
             const loginButton = document.getElementsByClassName("lonin_btn")[0]; // ?
 
             loginButton.style.fontSize = "14px"; // fixed size
@@ -24,7 +24,7 @@ getSettings().then((settings) => {
             frame.style.height = "36px";
             frame.style.borderRadius = "2px";
             document.getElementById("knuplus_login_container").appendChild(frame);
-        } else if (settings.lms.knu10AutoLogin) { // 패스키 X 자동 로그인 O
+        } else if (settings.account.knu10AutoLogin) { // 패스키 X 자동 로그인 O
             chrome.storage.local.get("credentials").then(async ({ credentials }) => {
                 if (!credentials) return;
 

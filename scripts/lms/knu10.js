@@ -7,7 +7,7 @@ if (!window.__KNUPLUS_SETTINGS__) {
 }
 
 if (window.__KNUPLUS_SETTINGS__) {
-    if (window.__KNUPLUS_SETTINGS__.miscellaneous.passkeyLogin && location.pathname === "/ctl/mainHome") {
+    if (window.__KNUPLUS_SETTINGS__.account.passkeyLogin && location.pathname === "/ctl/mainHome") {
         window.addEventListener("message", (event) => {
             if (event.origin.startsWith("chrome-extension://")) {
                 const { id, password, type } = JSON.parse(event.data);

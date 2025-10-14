@@ -7,6 +7,10 @@ function getSettings() {
             realTime: true,
             forceContacts: true
         },
+        information: {
+            disableAutoLogout: true,
+            disable2fa: true
+        },
         score: {
             forceEnable: true,
             disableAutoLogout: true
@@ -17,8 +21,7 @@ function getSettings() {
         },
         lms: {
             notification: true,
-            knu10ForceEnable: true,
-            knu10AutoLogin: false
+            knu10ForceEnable: true
         },
         dormitory: {
             forceEnableAcceptance: true,
@@ -27,12 +30,14 @@ function getSettings() {
             rememberPageNumber: true,
             disableAutoLogout: true
         },
+        account: {
+            passkeyLogin: false,
+            autoLogin: false,
+            knu10AutoLogin: false
+        },
         miscellaneous: {
             allowFunctionKeys: true,
-            antiDebugger: true,
-            autoLogin: false,
-            passkeyLogin: false,
-            disable2fa: true
+            antiDebugger: true
         }
     };
 

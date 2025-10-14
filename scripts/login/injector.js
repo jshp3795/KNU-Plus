@@ -4,7 +4,7 @@ getSettings().then((settings) => {
     document.documentElement.appendChild(script);
     script.remove();
 
-    if (settings.miscellaneous.passkeyLogin) {
+    if (settings.account.passkeyLogin) {
         const tabWrapper = document.getElementsByClassName("login_wrap")[0];
         const loginWrapper = document.getElementsByClassName("login-cont")[0];
 
@@ -54,7 +54,7 @@ getSettings().then((settings) => {
         frame.style.backgroundColor = "#DC2329";
         frame.style.borderRadius = "5px";
         document.getElementsByClassName("login-cont")[0].appendChild(frame);
-    } else if (settings.miscellaneous.autoLogin) {
+    } else if (settings.account.autoLogin) {
         chrome.storage.local.get("credentials").then(async ({ credentials }) => {
             if (!credentials) return;
 

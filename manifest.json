@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "KNU+",
     "description": "Bring extra convenience to KNUris' lives",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "icons": {
         "48": "icons/icon-48.png",
         "128": "icons/icon-128.png"
@@ -25,7 +25,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://knuin.knu.ac.kr/webview/main/Main.knu*"],
+            "matches": ["https://knuin.knu.ac.kr/webview/main/Main.knu*", "https://appfn.knu.ac.kr/webview/main/Main.knu*"],
             "js": ["scripts/utils/settings.js", "scripts/information/injector.js"],
             "run_at": "document_end"
         },
@@ -94,6 +94,10 @@
         {
             "matches": ["https://knuin.knu.ac.kr/*"],
             "resources": ["scripts/information/index.js", "scripts/schedule/index.js", "scripts/scheduleInfo/public.js", "scripts/scheduleInfo/private.js"]
+        },
+        {
+            "matches": ["https://appfn.knu.ac.kr/*"],
+            "resources": ["scripts/information/index.js"]
         },
         {
             "matches": ["https://lssrq.knu.ac.kr/*"],
