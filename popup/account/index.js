@@ -84,8 +84,8 @@ settings.get().then(set => {
 
     document.getElementById("knuplus_registeraccount").addEventListener("click", (event) => {
         const text = set.passkeyLogin ?
-            "입력하신 비밀번호는 로그인 서비스 제공을 위해 원본 비밀번호가 확인 가능한 형태로 기기와 패스키에 나누어 저장되기 때문에 이 기기와 패스키가 등록된 기기를 함께 도난당할 경우 패스키 인증 여부와 관계없이 노출될 수 있습니다." :
-            "입력하신 비밀번호는 로그인 서비스 제공을 위해 원본 비밀번호가 확인 가능한 형태로 저장되기 때문에 기기를 도난당할 경우 노출될 수 있습니다.";
+            "입력하신 비밀번호는 로그인 서비스 제공을 위해 원본 비밀번호가 확인 가능한 형태로 기기와 패스키에 나누어 저장되기 때문에 이 기기와 패스키가 등록된 기기를 함께 도난당할 경우 패스키 인증 여부와 관계없이 노출될 수 있습니다" :
+            "입력하신 비밀번호는 로그인 서비스 제공을 위해 원본 비밀번호가 확인 가능한 형태로 저장되기 때문에 기기를 도난당할 경우 노출될 수 있습니다";
 
         if (confirm(text)) {
             document.getElementById("knuplus_registeraccount").style.display = "none";
@@ -192,10 +192,16 @@ async function createPasskey(name, data) {
             name,
             displayName: name
         },
-        pubKeyCredParams: [{
-            type: "public-key",
-            alg: -7
-        }],
+        pubKeyCredParams: [
+            {
+                type: "public-key",
+                alg: -7
+            },
+            {
+                type: "public-key",
+                alg: -257
+            }
+        ],
         authenticatorSelection: {
             userVerification: "required"
         }
@@ -204,26 +210,6 @@ async function createPasskey(name, data) {
     const credential = await navigator.credentials.create({ publicKey });
 
     return credential.id;
-}
-
-async function getPasskey(credentialId) {
-    credentialId = atob(credentialId.replace(/-/g, "+").replace(/_/g, "/"));
-
-    const challenge = new Uint8Array(32);
-    crypto.getRandomValues(challenge);
-
-    const credential = await navigator.credentials.get({
-        publicKey: {
-            challenge,
-            allowCredentials: [{
-                id: Uint8Array.from(credentialId, c => c.charCodeAt(0)),
-                type: "public-key"
-            }],
-            userVerification: "required"
-        }
-    });
-
-    return credential;
 }
 
 function generateKey() {

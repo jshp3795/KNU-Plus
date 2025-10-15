@@ -1,16 +1,18 @@
 let credentialInfo = null;
 document.getElementById("knuplus_login").addEventListener("click", async (event) => {
     if (!credentialInfo) {
-        alert("KNU+ 확장 프로그램의 계정 탭에서 통합인증 시스템의 아이디와 비밀번호를 먼저 등록해주세요.");
+        alert("KNU+ 확장 프로그램의 계정 탭에서 통합인증 시스템의 아이디와 비밀번호를 먼저 등록해주세요");
         return;
     }
     if (credentialInfo.type !== "passkey") {
-        alert("KNU+ 확장 프로그램의 계정 탭에서 패스키를 먼저 등록해주세요.");
+        alert("KNU+ 확장 프로그램의 계정 탭에서 패스키를 먼저 등록해주세요");
         return;
     }
 
     const [ credentialId, iv ] = credentialInfo.key.split(":");
     const key = await getPasskey(credentialId);
+    if (!key) return; // passkey verification failed
+
     const password = await decryptPassword(credentialInfo.data, key, iv);
 
     window.parent.postMessage(JSON.stringify({
@@ -49,7 +51,12 @@ async function getPasskey(credentialId) {
             }],
             userVerification: "required"
         }
+    }).catch((err) => {
+        console.error(err);
+        return null;
     });
+
+    if (!credential) return null;
 
     return new TextDecoder().decode(credential.response.userHandle);
 }

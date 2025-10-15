@@ -195,4 +195,66 @@ getSettings().then((settings) => {
     if (settings.lms.notification) {
         pollConversations();
     }
+
+    window.addEventListener("message", async (event) => {
+        const { data } = event;
+        if (data.from !== "page") return;
+
+        if (data.type === "VIDEO_ATTEND" && event.origin === "https://lcms.knu.ac.kr") {
+            // Popup -> IFrame ContentScript (iframe_injector.js) -> IFrame Page (iframe.js) -> [ Main ContentScript (injector.js) ] -> IFrame ContentScript (iframe_injector.js) -> Popup
+
+            const { lmsUrl, lmsState, currentState, startTime, endTime, page, totalPages, cumulativePage } = data.data;
+
+            // 영상을 재생하지 않은 상태, 시청 시작 패킷을 먼저 보내주어야 함
+            if (currentState === lmsState.PLAYING) {
+                const payload = new URLSearchParams({
+                    callback: "", // can be blank
+                    state: lmsState.PLAYING, // 시청 시작
+                    duration: endTime,
+                    currentTime: startTime,
+                    cumulativeTime: startTime,
+                    page: page,
+                    totalpage: totalPages,
+                    cumulativePage: cumulativePage,
+                    _: Date.now()
+                });
+                await fetch(lmsUrl + "&" + payload.toString());
+
+                // wait 1s for the server to recognize the session
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+
+            // 시청 중 패킷
+            const payload = new URLSearchParams({
+                callback: "", // can be blank
+                state: lmsState.UPDATE_DATA, // 시청 중
+                duration: endTime,
+                currentTime: endTime,
+                cumulativeTime: endTime,
+                page: totalPages,
+                totalpage: totalPages,
+                cumulativePage: cumulativePage,
+                _: Date.now()
+            });
+            await fetch(lmsUrl + "&" + payload.toString());
+
+            // 시청 완료 패킷
+            payload.set("state", lmsState.CONTENT_END); // 시청 완료
+            payload.set("_", Date.now());
+            await fetch(lmsUrl + "&" + payload.toString());
+
+            // 시청 페이지 이탈 패킷
+            payload.set("state", lmsState.UNLOAD); // 시청 페이지 이탈
+            payload.set("_", Date.now());
+            await fetch(lmsUrl + "&" + payload.toString());
+
+            const toolContent = document.getElementById("tool_content");
+            const videoFrame = toolContent.contentDocument.getElementsByClassName("xnlailvc-commons-frame")[0];
+            videoFrame.contentWindow.postMessage({ from: "contentScript", type: "VIDEO_ATTEND" }, "https://lcms.knu.ac.kr");
+
+            // 학습 진행 상태 새로고침
+            toolContent.contentDocument.getElementsByClassName("xnvc-progress-info-refresh_button")[0].click();
+            toolContent.contentWindow.scrollBy({ top: toolContent.contentDocument.body.scrollHeight, behavior: "smooth" });
+        }
+    });
 });

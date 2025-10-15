@@ -74,6 +74,23 @@ settings.get().then(set => {
     }
 });
 
+for (const element of document.getElementsByClassName("minibutton-item")) {
+    const box = element.getElementsByClassName("item-minibuttonbox")[0];
+    box.addEventListener("mousedown", (event) => {
+        if (!confirm("출결 상세 이력에서 실제 학습 시간 열람이 가능하기 때문에 되도록 사용하지 않는 것을 권장합니다\n사용 시 출석을 건너뛴 사실을 교수자가 확인할 수 있습니다\n그래도 사용하시겠습니까?")) return;
+
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, { type: "VIDEO_ATTEND" }, (response) => {
+                if (chrome.runtime.lastError) {
+                    // 강의 페이지가 아님
+                    alert("강의 페이지에서 다시 시도해주세요");
+                    return;
+                }
+            });
+        });
+    });
+}
+
 const downloadButton = document.getElementById("knuplus_downloadbutton");
 
 const videoInfo = { chunks: null, url: null, title: null, type: null };
@@ -176,7 +193,7 @@ downloadButton.addEventListener("click", async () => {
             setItemStatus("downloading", videoHash, videoInfo.title, chunkId);
         });
     } else {
-        if (confirm(`지원되지 않는 포맷 '${videoInfo.type}' 입니다. 직접 다운로드해 주세요.\n\n다운로드를 위해 링크를 복사하시겠습니까?`)) {
+        if (confirm(`지원되지 않는 포맷 '${videoInfo.type}' 입니다. 직접 다운로드해 주세요\n\n다운로드를 위해 링크를 복사하시겠습니까?`)) {
             navigator.clipboard.writeText(videoInfo.url);
         }
     }

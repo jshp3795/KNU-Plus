@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "KNU+",
     "description": "Bring extra convenience to KNUris' lives",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "icons": {
         "48": "icons/icon-48.png",
         "128": "icons/icon-128.png"
