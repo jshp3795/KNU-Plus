@@ -14,7 +14,7 @@ if (window.__KNUPLUS_SETTINGS__) {
     }
 
     // 로그인 된 상태
-    if (location.pathname === "https://sugang.knu.ac.kr/web/stddm/lssrq/sugang/appcr.knu") {
+    if (location.pathname === "/web/stddm/lssrq/sugang/appcr.knu") {
         // 자동 로그아웃 타이머 비활성화
         if (window.__KNUPLUS_SETTINGS__.sugang.disableAutoLogout) {
             clearInterval(logOutTimer.timerObj);

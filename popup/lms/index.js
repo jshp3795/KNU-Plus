@@ -77,7 +77,7 @@ settings.get().then(set => {
 for (const element of document.getElementsByClassName("minibutton-item")) {
     const box = element.getElementsByClassName("item-minibuttonbox")[0];
     box.addEventListener("mousedown", (event) => {
-        if (!confirm("출결 상세 이력에서 실제 학습 시간 열람이 가능하기 때문에 되도록 사용하지 않는 것을 권장합니다\n사용 시 출석을 건너뛴 사실을 교수자가 확인할 수 있습니다\n그래도 사용하시겠습니까?")) return;
+        if (!confirm("출결 상세 이력에서 학습 시작 및 종료 시각을 열람할 수 있기 때문에 되도록 사용하지 않는 것을 권장합니다\n사용 시 출석을 건너뛴 사실을 교수자가 확인할 수 있습니다\n그래도 사용하시겠습니까?")) return;
 
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { type: "VIDEO_ATTEND" }, (response) => {
